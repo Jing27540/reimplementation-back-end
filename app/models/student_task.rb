@@ -1,4 +1,4 @@
-class StudentTask
+class StudentTask < ApplicationRecord
     attr_accessor :assignment, :current_stage, :participant, :stage_deadline, :topic, :permission_granted
 
     # Initializes a new instance of the StudentTask class

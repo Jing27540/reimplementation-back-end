@@ -117,9 +117,65 @@ begin
 
 
 
+  # ------------------------------------------  
+    # # Creating some example students
+    # students = Student.create([
+    #   { first_name: 'John', last_name: 'Doe', email: 'john.doe@example.com' },
+    #   { first_name: 'Jane', last_name: 'Smith', email: 'jane.smith@example.com' },
+    #   { first_name: 'Alex', last_name: 'Johnson', email: 'alex.johnson@example.com' }
+    # ])
 
+    # # Creating some example tasks
+    # tasks = Task.create([
+    #   { name: 'Math Homework', description: 'Solve equations and problems', due_date: '2025-05-01' },
+    #   { name: 'Science Project', description: 'Complete the project on biology', due_date: '2025-06-01' },
+    #   { name: 'History Essay', description: 'Write an essay on ancient civilizations', due_date: '2025-04-15' }
+    # ])
 
+    # # Associating students with tasks (creating StudentTask entries)
+    # StudentTask.create([
+    #   { student: students[0], task: tasks[0], status: 'completed', submission_date: '2025-04-10' },
+    #   { student: students[0], task: tasks[1], status: 'pending' },
+    #   { student: students[1], task: tasks[2], status: 'completed', submission_date: '2025-04-12' },
+    #   { student: students[2], task: tasks[1], status: 'in_progress' },
+    #   { student: students[2], task: tasks[0], status: 'completed', submission_date: '2025-04-08' }
+    # ])
 
+    # puts 'Seed data for students, tasks, and student_tasks created successfully!'
+
+    # # Creating StudentTask records for participants
+    # puts "Filling missing attributes for Participants"
+    # Participant.all.each do |participant|
+    #   # Fill missing attributes with Faker data if they are nil
+    #   participant.handle ||= Faker::Internet.username
+    #   participant.topic ||= Faker::Lorem.sentence
+    #   participant.current_stage ||= Faker::Lorem.word
+    #   participant.stage_deadline ||= Time.zone.now + rand(1..4).weeks  # Random deadline between 1-4 weeks
+  
+    #   # Save the participant with the filled attributes
+    #   participant.save!
+  
+    #   puts "Filled missing attributes for Participant ID: #{participant.id}"
+    # end
+  
+    # # Creating StudentTask records for participants
+    # puts "Creating StudentTask records for participants"
+    # Participant.all.each_with_index do |participant, i|
+    #   begin
+    #     # Ensure required attributes are valid before creating the task
+    #     task = StudentTask.create!(
+    #       assignment: "Program #{(i % num_assignments) + 1}",
+    #       topic: participant.topic,
+    #       participant_id: participant.id,
+    #       current_stage: participant.current_stage,
+    #       stage_deadline: participant.stage_deadline,
+    #       permission_granted: participant.permission_granted || false, # Default to false if nil
+    #     )
+    #     puts "✔ Created StudentTask for participant ID: #{participant.id}"
+    #   rescue ActiveRecord::RecordInvalid => e
+    #     puts "✘ Failed to create StudentTask for participant ID: #{participant.id} - #{e.message}"
+    #   end
+    # end
 
 
 rescue ActiveRecord::RecordInvalid => e

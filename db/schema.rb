@@ -334,6 +334,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_020117) do
     t.index ["team_id"], name: "index_signed_up_teams_on_team_id"
   end
 
+  create_table "student_tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "assignment_id", null: false
+    t.string "current_stage"
+    t.bigint "participant_id", null: false
+    t.datetime "stage_deadline"
+    t.string "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignment_id"], name: "index_student_tasks_on_assignment_id"
+    t.index ["participant_id"], name: "index_student_tasks_on_participant_id"
+  end
+
   create_table "ta_mappings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "course_id", null: false
     t.bigint "user_id", null: false
@@ -403,6 +415,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_020117) do
   add_foreign_key "sign_up_topics", "assignments"
   add_foreign_key "signed_up_teams", "sign_up_topics"
   add_foreign_key "signed_up_teams", "teams"
+  add_foreign_key "student_tasks", "assignments"
+  add_foreign_key "student_tasks", "participants"
   add_foreign_key "ta_mappings", "courses"
   add_foreign_key "ta_mappings", "users"
   add_foreign_key "teams", "assignments"
